@@ -11,8 +11,10 @@ Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"SetDirectory", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"SetDirectory", "[", 
+    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
     RowBox[{
@@ -24,35 +26,10 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"Eigenfaces", "/", "Eigenfaces"}], "/", 
      RowBox[{"Imports", ".", "m"}]}]}], "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{"Import", "[", 
-  "\"\<home/eric/git/QEA-Eigenfaces/Eigenfaces/Imports.m\>\"", 
-  "]"}]}], "Input"],
+ RowBox[{"<<", "Imports.m"}]}], "Input",
+ InitializationCell->True],
 
-Cell[BoxData["\<\"/home/eric/git/QEA-Eigenfaces/Eigenfaces\"\>"], "Output"],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"Import", "::", "nffil"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"File not found during \
-\[NoBreak]\\!\\(\\*RowBox[{\\\"Import\\\"}]\\)\[NoBreak]. \\!\\(\\*ButtonBox[\
-\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/message/Import/nffil\\\", ButtonNote -> \
-\\\"Import::nffil\\\"]\\)\"\>"}]], "Message", "MSG"],
-
-Cell[BoxData["$Failed"], "Output"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"FileNames", "[", "]"}]], "Input"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"data\"\>", ",", "\<\"Imports.m\"\>", ",", "\<\"main.nb\"\>"}], 
-  "}"}]], "Output"]
+Cell[BoxData["\<\"/home/eric/git/QEA-Eigenfaces/Eigenfaces\"\>"], "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
