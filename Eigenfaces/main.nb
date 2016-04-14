@@ -7,29 +7,79 @@ Cell[CellGroupData[{
 
 Cell["Imports", "Chapter"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"SetDirectory", "[", 
-    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{"<<", 
-        RowBox[{"/", "home"}]}], "/", "eric"}], "/", "git"}], "/", "QEA"}], 
-    "-", 
-    RowBox[{
-     RowBox[{"Eigenfaces", "/", "Eigenfaces"}], "/", 
-     RowBox[{"Imports", ".", "m"}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "Imports.m"}]}], "Input",
  InitializationCell->True],
 
-Cell[BoxData["\<\"/home/eric/git/QEA-Eigenfaces/Eigenfaces\"\>"], "Output"]
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "standardize.m"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Mean", "::", "rectt"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Rectangular array expected at position \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"1\\\"}]\\)\[NoBreak] in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"Mean\\\", \\\"[\\\", \\\"1\\\", \\\"]\\\"}]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/Mean\
+\\\", ButtonNote -> \\\"Mean::rectt\\\"]\\)\"\>"}]], "Message", "MSG"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Mean", "::", "rectt"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Rectangular array expected at position \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"1\\\"}]\\)\[NoBreak] in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"Mean\\\", \\\"[\\\", \\\"2\\\", \\\"]\\\"}]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/Mean\
+\\\", ButtonNote -> \\\"Mean::rectt\\\"]\\)\"\>"}]], "Message", "MSG"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Mean", "::", "rectt"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Rectangular array expected at position \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"1\\\"}]\\)\[NoBreak] in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"Mean\\\", \\\"[\\\", \\\"3\\\", \\\"]\\\"}]\\)\
+\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/Mean\
+\\\", ButtonNote -> \\\"Mean::rectt\\\"]\\)\"\>"}]], "Message", "MSG"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[RowBox[{\\\"Mean\\\", \\\"::\\\", \
+\\\"rectt\\\"}], \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during \
+this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"1", "-", 
+    RowBox[{"Mean", "[", "1", "]"}]}], ",", 
+   RowBox[{"2", "-", 
+    RowBox[{"Mean", "[", "2", "]"}]}], ",", 
+   RowBox[{"3", "-", 
+    RowBox[{"Mean", "[", "3", "]"}]}], ",", 
+   RowBox[{"4", "-", 
+    RowBox[{"Mean", "[", "4", "]"}]}]}], "}"}]], "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -60,8 +110,8 @@ GhostCellInEmptyNotebook->False,
 CellInsertionPointColor->GrayLevel[0.7500114442664225],
 CellInsertionPointCell->FEPrivate`FrontEndResource[
  "FEExpressions", "CellInsertionMenu"],
-WindowSize->{979, 1013},
-WindowMargins->{{-9, Automatic}, {Automatic, -8}},
+WindowSize->{960, 1028},
+WindowMargins->{{-10, Automatic}, {Automatic, -10}},
 BackgroundAppearance->None,
 BackgroundAppearanceOptions->"Fill",
 PrivateNotebookOptions->{"DockedCellAnimation"->False,
@@ -86,7 +136,7 @@ PrivateNotebookOptions->{"DockedCellAnimation"->False,
 TrackCellChangeTimes->False,
 Magnification->1.,
 Background->None,
-FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (December 10, 2015)",
 StyleDefinitions->"Default.nb"
 ]
 

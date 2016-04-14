@@ -138,3 +138,17 @@ intensities = Flatten[ImageData[ColorConvert[picture,"Grayscale"]]];
 xydata=Transpose@Flatten[Table[{x,y,1},{y,1,n},{x,1,m}],1];
 {xydata,intensities}
 ]
+
+
+(* ::Section:: *)
+(*Standardize*)
+
+
+Clear@standardize
+standardize[data_]:=Module[{standardized},
+standardized=data-Map[Mean,data];
+Return[standardized]]
+
+
+(* ::Code:: *)
+(*standardize[{Range@1,Range@2,Range@3,Range@4}]*)
