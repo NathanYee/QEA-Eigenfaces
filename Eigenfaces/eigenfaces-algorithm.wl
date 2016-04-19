@@ -56,7 +56,7 @@ Dimensions/@{u,w,v}
 (*I wonder what the columns of v look like?*)
 
 
-Grid@Prepend[Table[{i,w[[i,i]],ImageAdjust@Image@Partition[v[[All,i]],256]},{i,10}] ,{"id","Singular Value","Vector"}]
+Grid@Prepend[Table[{i,lambdas[[i]],ImageAdjust@Image@Partition[eigenfaces[[i]],256]},{i,10}] ,{"id","Singular Value","Vector"}]
 
 
 (* ::Text:: *)
