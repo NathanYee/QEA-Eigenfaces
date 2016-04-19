@@ -31,18 +31,25 @@ Dimensions@normalizedFaces
 (*Create the giant correlation matrix*)
 
 
-corr1=Covariance[Transpose@flattenedNeutralFaces];
+corr1=normalizedFaces.Transpose[normalizedFaces];
 Dimensions@corr1
 
 
-{lambdas,vectors} = Eigensystem[corr1]/.{x_,y_}:>{x,Transpose@y};
+{lambdas,vectors} = Eigensystem[corr1];
+vectors=Transpose@vectors;
 Dimensions@lambdas
 Dimensions@vectors
 
 
-eigenfaces=Transpose[vectors].normalizedFaces;
+eigenfaces=Transpose[normalizedFaces].vectors;
+eigenfaces=Transpose[eigenfaces];
 Dimensions@eigenfaces
-Length[eigenfaces[[1]]]
+
+
+Dimensions[vectors]
+vectors[[1]].vectors[[2]]
+Dimensions[eigenfaces]
+eigenfaces[[1]].eigenfaces[[2]]
 
 
 (* ::Text:: *)
@@ -68,7 +75,6 @@ Grid@Prepend[Table[{i,lambdas[[i]],ImageAdjust@Image@Partition[eigenfaces[[i]],2
 (*Start decomposing the faces into eigencomponents*)
 
 
-eigenfaces = Transpose@v;
 decompose[face_,eigenfaces_,n_]:=Module[{},
 (* face is a 1d vector here, and is treated implicitly as a row vector. *)
 face.Transpose@eigenfaces[[1;;n]]
