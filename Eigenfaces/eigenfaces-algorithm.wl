@@ -83,7 +83,7 @@ eigenfaces[[1;;n]].face
 (*Then build it back up.*)
 
 
-depth=All;
+depth=30;
 eigenme=decompose[Flatten@me,eigenfaces,depth]
 Image@Partition[Total[MapThread[Times,{eigenme,eigenfaces[[1;;depth]]}]],256]
 
@@ -92,7 +92,7 @@ Image@Partition[Total[MapThread[Times,{eigenme,eigenfaces[[1;;depth]]}]],256]
 (*Notice that the reconstruction is lossy because I'm not in the training data*)
 
 
-trainingFaces=decompose[#,eigenfaces,30]&/@normalizedFaces;
+trainingFaces=decompose[#,eigenfaces,depth]&/@normalizedFaces;
 
 
 (* ::Section:: *)
@@ -100,16 +100,16 @@ trainingFaces=decompose[#,eigenfaces,30]&/@normalizedFaces;
 
 
 recognizeFace[face_]:=Module[{i},
-i=Nearest[trainingFaces->Automatic,decompose[Flatten@face,eigenfaces,30]][[1]];
+i=Nearest[trainingFaces->Automatic,decompose[Flatten@face,eigenfaces,depth]][[1]];
 {names[[i]],Image[neutralFaces[[i]]]}
 ]
 
 
-Nearest[trainingFaces->Image/@neutralFaces,decompose[Flatten@me,eigenfaces,30]]
+Nearest[trainingFaces->Image/@neutralFaces,decompose[Flatten@me,eigenfaces,depth]]
 
 
 Length@trainingFaces[[1]]
-Length@decompose[Flatten@me,eigenfaces,30]
+Length@decompose[Flatten@me,eigenfaces,depth]
 
 
 recognizeFace[me]
