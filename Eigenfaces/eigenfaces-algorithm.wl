@@ -61,6 +61,7 @@ eigenfaces[[1]].eigenfaces[[2]]
 
 
 {u,w,v}=SingularValueDecomposition[normalizedFaces, 43];
+eigenfaces = Transpose@v;
 Dimensions/@{u,w,v}
 
 
@@ -69,6 +70,10 @@ Dimensions/@{u,w,v}
 
 
 Grid@Prepend[Table[{i,lambdas[[i]],ImageAdjust@Image@Partition[eigenfaces[[i]],256]},{i,10}] ,{"id","Singular Value","Vector"}]
+
+
+(* ::Section:: *)
+(*Use that decomposition to understand specific faces*)
 
 
 (* ::Text:: *)
@@ -85,15 +90,46 @@ face.Transpose@eigenfaces[[1;;n]]
 (*As a test, decompose my own face*)
 
 
-eigenme=decompose[Flatten@me,eigenfaces,All]
-
-
 (* ::Text:: *)
-(*Now build it back up.*)
+(*Then build it back up.*)
 
 
-Image@Partition[Total[MapThread[#1*#2&,{eigenme,eigenfaces}]],256]
+depth=30;
+eigenme=decompose[Flatten@me,eigenfaces,depth];
+Image@Partition[Total[MapThread[#1*#2&,{eigenme,eigenfaces[[1;;depth]]}]],256]
 
 
 (* ::Text:: *)
 (*Notice that the reconstruction is lossy because I'm not in the training data*)
+
+
+trainingFaces=decompose[#,eigenfaces,30]&/@normalizedFaces;
+
+
+(* ::Section:: *)
+(*Start recognizing faces*)
+
+
+recognizeFace[face_]:=Module[{i},
+i=Nearest[trainingFaces->Automatic,decompose[Flatten@face,eigenfaces,30]][[1]];
+{names[[i]],Image[neutralFaces[[i]]]}
+]
+
+
+Nearest[trainingFaces->Image/@neutralFaces,decompose[Flatten@images[[3]],eigenfaces,30]]
+
+
+Length@trainingFaces[[1]]
+Length@decompose[Flatten@me,eigenfaces,30]
+
+
+recognizeFace[me]
+
+
+Dimensions@neutralFaces
+
+
+i
+
+
+Table[Join[{Image[face],"\[Rule]"},recognizeFace[face]],{face,images[[3;;100;;8]]}]
