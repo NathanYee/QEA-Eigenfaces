@@ -13,6 +13,9 @@ Dimensions@neutralFaces
 m=Dimensions[neutralFaces][[1]]
 
 
+neutralFaces=images;
+
+
 (* ::Section:: *)
 (*Step 1: Understand the dimensions along which faces differ*)
 
@@ -101,7 +104,7 @@ trainingFaces=decompose[#,eigenfaces,depth]&/@normalizedFaces;
 
 recognizeFace[face_]:=Module[{i},
 i=Nearest[trainingFaces->Automatic,decompose[Flatten@face,eigenfaces,depth]][[1]];
-{names[[i]],Image[neutralFaces[[i]]]}
+{Image[neutralFaces[[i]]]}
 ]
 
 
