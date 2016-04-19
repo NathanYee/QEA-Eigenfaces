@@ -57,3 +57,32 @@ Dimensions/@{u,w,v}
 
 
 Grid@Prepend[Table[{i,w[[i,i]],ImageAdjust@Image@Partition[v[[All,i]],256]},{i,10}] ,{"id","Singular Value","Vector"}]
+
+
+(* ::Text:: *)
+(*Start decomposing the faces into eigencomponents*)
+
+
+eigenfaces = Transpose@v;
+decompose[face_,eigenfaces_,n_]:=Module[{},
+(* face is a 1d vector here, and is treated implicitly as a row vector. *)
+face.Transpose@eigenfaces[[1;;n]]
+]
+
+
+(* ::Text:: *)
+(*As a test, decompose my own face*)
+
+
+eigenme=decompose[Flatten@me,eigenfaces,All]
+
+
+(* ::Text:: *)
+(*Now build it back up.*)
+
+
+Image@Partition[Total[MapThread[#1*#2&,{eigenme,eigenfaces}]],256]
+
+
+(* ::Text:: *)
+(*Notice that the reconstruction is lossy because I'm not in the training data*)
