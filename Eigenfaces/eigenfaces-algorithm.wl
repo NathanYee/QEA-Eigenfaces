@@ -4,13 +4,13 @@
 (*Basic setup*)
 
 
-(* ::Code:: *)
-(*SetDirectory@NotebookDirectory[];*)
-(*<<Imports.m*)
+SetDirectory@NotebookDirectory[];
+<<Imports.m
 
 
 neutralFaces=images[[Range[1,Length@images,8]]];
 Dimensions@neutralFaces
+m=Dimensions[neutralFaces][[1]]
 
 
 (* ::Section:: *)
@@ -31,9 +31,13 @@ Dimensions@normalizedFaces
 (*Create the giant correlation matrix*)
 
 
-(*corr1=Covariance@flattenedNeutralFaces;
-Dimensions@corr1*)
-(*Don't use this, it crashes Mathematica.*)
+corr1=Covariance[Transpose@flattenedNeutralFaces];
+Dimensions@corr1
+
+
+{lambdas,vectors} = Eigensystem[corr1]/.{x_,y_}:>{x,Transpose@y};
+Dimensions@lambdas
+Dimensions@vectors
 
 
 (* ::Text:: *)
