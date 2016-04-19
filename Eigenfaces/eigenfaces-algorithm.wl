@@ -23,6 +23,8 @@ Dimensions@neutralFaces
 
 flattenedNeutralFaces=Transpose@Flatten[neutralFaces,{2,3}];
 Dimensions@flattenedNeutralFaces
+normalizedFaces=#/Mean[#]&/@flattenedNeutralFaces;
+Dimensions@normalizedFaces
 
 
 (* ::Text:: *)
@@ -35,14 +37,14 @@ Dimensions@corr1*)
 
 
 (* ::Text:: *)
-(*Todo: try shrinking the images so we don't run out of RAM trying to make a 100,000 x 100,000 matrix*)
+(*Todo: try shrinking the images or using fancy math so we don't run out of RAM trying to make a 100,000 x 100,000 matrix*)
 
 
 (* ::Text:: *)
 (*Instead, use a truncated SVD*)
 
 
-{u,w,v}=SingularValueDecomposition[flattenedNeutralFaces,10];
+{u,w,v}=SingularValueDecomposition[normalizedFaces, 43];
 Dimensions/@{u,w,v}
 
 
