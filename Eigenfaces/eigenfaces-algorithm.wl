@@ -40,6 +40,11 @@ Dimensions@lambdas
 Dimensions@vectors
 
 
+eigenfaces=Transpose[vectors].normalizedFaces;
+Dimensions@eigenfaces
+Length[eigenfaces[[1]]]
+
+
 (* ::Text:: *)
 (*Todo: try shrinking the images or using fancy math so we don't run out of RAM trying to make a 100,000 x 100,000 matrix*)
 
