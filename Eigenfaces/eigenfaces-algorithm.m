@@ -51,24 +51,14 @@ eigenfaces=Map[Normalize,eigenfaces];
 Dimensions@eigenfaces
 
 
-Dimensions[vectors]
-vectors[[1]].vectors[[2]]
-Dimensions[eigenfaces]
-eigenfaces[[3]].eigenfaces[[7]]
-
-
-Grid@Prepend[Table[{i,lambdas[[i]],ImageAdjust@Image@Partition[eigenfaces[[i]],256]},{i,10}] ,{"id","Singular Value","Vector"}]
-
-
 decompose[face_,eigenfaces_,n_]:=Module[{},
 (* face is a 1d vector here, and is treated implicitly as a row vector. *)
 eigenfaces[[1;;n]].face
 ]
 
 
-depth=30;
-eigenme=decompose[Flatten@me,eigenfaces,depth]
-Image@Partition[Total[MapThread[Times,{eigenme,eigenfaces[[1;;depth]]}]],256]
+Clear@depth;
+depth:=30;
 
 
 trainingFaces=decompose[#,eigenfaces,depth]&/@normalizedFaces;
