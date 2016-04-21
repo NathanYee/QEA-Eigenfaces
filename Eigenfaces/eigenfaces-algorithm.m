@@ -83,7 +83,4 @@ recognizeFace[me]
 Dimensions@neutralFaces
 
 
-i
-
-
 Grid@Table[Join[{Image[face],"\[Rule]"},recognizeFace[face]],{face,images[[3;;100;;8]]}]
