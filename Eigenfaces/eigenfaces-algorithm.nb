@@ -1,3 +1,22 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14063,        457]
+NotebookOptionsPosition[     11775,        381]
+NotebookOutlinePosition[     12750,        416]
+CellTagsIndexPosition[     12707,        413]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
@@ -141,17 +160,27 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["Use that decomposition to understand specific faces", "Section"],
+Cell["Step 2: Use the eigenfaces to compress new images", "Section"],
 
-Cell["Start decomposing the faces into eigencomponents", "Text"],
+Cell["\<\
+Next, we need to learn how to compress an image into components of our \
+eigenfaces (orthagonal eigenvectors).\
+\>", "Text"],
+
+Cell["\<\
+First, we create a function, \[OpenCurlyDoubleQuote]eigenCompress\
+\[CloseCurlyDoubleQuote], that takes in as inputs: an image, the eigenfaces, \
+and an accuracy parameter.  The function returns a compressed version of the \
+input image expressed as linear combinations of the eigenfaces.\
+\>", "Text"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"decompose", "[", 
-   RowBox[{"face_", ",", "eigenfaces_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"eigenCompress", "[", 
+   RowBox[{"image_", ",", "eigenfaces_", ",", "n_"}], "]"}], ":=", 
   RowBox[{"Module", "[", 
    RowBox[{
-    RowBox[{"{", "}"}], ",", "\n", 
+    RowBox[{"{", "imageFlat", "}"}], ",", "\n", 
     RowBox[{"(*", " ", 
      RowBox[{
       RowBox[{
@@ -161,15 +190,54 @@ Cell[BoxData[
       "and", " ", "is", " ", "treated", " ", "implicitly", " ", "as", " ", 
        "a", " ", "row", " ", 
        RowBox[{"vector", "."}]}]}], " ", "*)"}], "\n", 
+    RowBox[{"(*", 
+     RowBox[{"TODO", ":", " ", 
+      RowBox[{"make", " ", "face", " ", "an", " ", "image", " ", "input"}]}], 
+     "*)"}], "\n", 
     RowBox[{
-     RowBox[{"eigenfaces", "[", 
-      RowBox[{"[", 
-       RowBox[{"1", ";;", "n"}], "]"}], "]"}], ".", "face"}]}], "\n", 
+     RowBox[{"imageFlat", "=", 
+      RowBox[{"Flatten", "@", "image"}]}], ";", "\n", 
+     RowBox[{"Return", "[", 
+      RowBox[{
+       RowBox[{"eigenfaces", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ";;", "n"}], "]"}], "]"}], ".", "imageFlat"}], 
+      "]"}]}]}], "\n", "]"}]}]], "Code"],
+
+Cell["\<\
+Second, create a function, \[OpenCurlyDoubleQuote]eigenDecompression\
+\[CloseCurlyDoubleQuote], that takes in as inputs: an eigenfaces compressed \
+image, and the eigenfaces.  The function returns an image.\
+\>", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"eigenDecompress", "[", 
+   RowBox[{"compressedImage_", ",", "eigenfaces_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "decompressedData", "}"}], ",", "\n", 
+    RowBox[{
+     RowBox[{"decompressedData", "=", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Total", "[", 
+         RowBox[{"MapThread", "[", 
+          RowBox[{"Times", ",", 
+           RowBox[{"{", 
+            RowBox[{"compressedImage", ",", 
+             RowBox[{"eigenfaces", "[", 
+              RowBox[{"[", 
+               RowBox[{"1", ";;", "n"}], "]"}], "]"}]}], "}"}]}], "]"}], 
+         "]"}], ",", "256"}], "]"}]}], ";", "\n", 
+     RowBox[{"Return", "[", 
+      RowBox[{"Image", "@", "decompressedData"}], "]"}]}]}], "\n", 
    "]"}]}]], "Code"],
 
-Cell["As a test, decompose my own face", "Text"],
-
-Cell["Then build it back up.", "Text"],
+Cell["\<\
+Define \[OpenCurlyDoubleQuote]depth\[CloseCurlyDoubleQuote], the number of \
+eigenfaces used to compress and decompress the image\
+\>", "Text"],
 
 Cell[BoxData[{
  RowBox[{
@@ -178,44 +246,47 @@ Cell[BoxData[{
   RowBox[{"depth", ":=", "30"}], ";"}]}], "Code",
  CellChangeTimes->{{3.670234585380802*^9, 3.670234602720825*^9}}],
 
+Cell["\<\
+Now, compress and uncompress an image not in the training set.  \
+\[OpenCurlyDoubleQuote]me\[CloseCurlyDoubleQuote] is an image of Eric that we \
+will use to verify the compression and decompression functions.\
+\>", "Text"],
+
 Cell[BoxData[{
- RowBox[{"eigenme", "=", 
-  RowBox[{"decompose", "[", 
-   RowBox[{
-    RowBox[{"Flatten", "@", "me"}], ",", "eigenfaces", ",", "depth"}], 
-   "]"}]}], "\n", 
- RowBox[{"Image", "@", 
-  RowBox[{"Partition", "[", 
-   RowBox[{
-    RowBox[{"Total", "[", 
-     RowBox[{"MapThread", "[", 
-      RowBox[{"Times", ",", 
-       RowBox[{"{", 
-        RowBox[{"eigenme", ",", 
-         RowBox[{"eigenfaces", "[", 
-          RowBox[{"[", 
-           RowBox[{"1", ";;", "depth"}], "]"}], "]"}]}], "}"}]}], "]"}], 
-     "]"}], ",", "256"}], "]"}]}]}], "Code",
- InitializationCell->False,
- CellChangeTimes->{3.670234585380802*^9}],
+ RowBox[{
+  RowBox[{"eigenme", "=", 
+   RowBox[{"eigenCompress", "[", 
+    RowBox[{"me", ",", "eigenfaces", ",", "depth"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"eigenDecompress", "[", 
+  RowBox[{"eigenme", ",", "eigenfaces", ",", "depth"}], "]"}]}], "Code",
+ InitializationCell->False],
 
 Cell["\<\
-Notice that the reconstruction is lossy because I'm not in the training data\
+Above we can see an image of Eric that has been expressed as linear \
+combinations of the 30 most influential eigenfaces.\
 \>", "Text"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Start recognizing faces", "Section"],
+Cell["Step 3: Start recognizing faces", "Section"],
 
-Cell[BoxData[
+Cell["\<\
+First, we create a training set that will be used to identify individual \
+images.  The training set will consist of one image of each person expressed \
+as the first n eigenfaces of each person.  \
+\>", "Text"],
+
+Cell[BoxData[{
  RowBox[{
   RowBox[{"trainingFaces", "=", 
-   RowBox[{
+   RowBox[{"Map", "[", 
     RowBox[{
-     RowBox[{"decompose", "[", 
-      RowBox[{"#", ",", "eigenfaces", ",", "depth"}], "]"}], "&"}], "/@", 
-    "normalizedFaces"}]}], ";"}]], "Code"],
+     RowBox[{
+      RowBox[{"eigenCompress", "[", 
+       RowBox[{"#", ",", "eigenfaces", ",", "depth"}], "]"}], "&"}], ",", 
+     "normalizedFaces"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Dimensions", "@", "trainingFaces"}]}], "Code"],
 
 Cell[BoxData[
  RowBox[{
@@ -229,10 +300,10 @@ Cell[BoxData[
        RowBox[{"Nearest", "[", 
         RowBox[{
          RowBox[{"trainingFaces", "->", "Automatic"}], ",", 
-         RowBox[{"decompose", "[", 
+         RowBox[{"eigenCompress", "[", 
           RowBox[{
            RowBox[{"Flatten", "@", "face"}], ",", "eigenfaces", ",", 
-           "depth"}], "]"}]}], "]"}], "[", 
+           "depth"}], "]"}], ",", "2"}], "]"}], "[", 
        RowBox[{"[", "1", "]"}], "]"}]}], ";", "\n", 
      RowBox[{"{", 
       RowBox[{"Image", "[", 
@@ -245,23 +316,46 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"trainingFaces", "->", 
     RowBox[{"Image", "/@", "neutralFaces"}]}], ",", 
-   RowBox[{"decompose", "[", 
+   RowBox[{"eigenCompress", "[", 
     RowBox[{
-     RowBox[{"Flatten", "@", "me"}], ",", "eigenfaces", ",", "depth"}], 
-    "]"}]}], "]"}]], "Code"],
+     RowBox[{"Flatten", "@", "me"}], ",", "eigenfaces", ",", "depth"}], "]"}],
+    ",", "3"}], "]"}]], "Code"],
 
 Cell[BoxData[{
  RowBox[{"Length", "@", 
   RowBox[{"trainingFaces", "[", 
    RowBox[{"[", "1", "]"}], "]"}]}], "\n", 
  RowBox[{"Length", "@", 
-  RowBox[{"decompose", "[", 
+  RowBox[{"eigenCompress", "[", 
    RowBox[{
     RowBox[{"Flatten", "@", "me"}], ",", "eigenfaces", ",", "depth"}], 
    "]"}]}]}], "Code"],
 
-Cell[BoxData[
- RowBox[{"recognizeFace", "[", "me", "]"}]], "Code"],
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"recognizeFace", "[", 
+    RowBox[{"face_", ",", "n_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "i", "}"}], ",", "\n", 
+     RowBox[{
+      RowBox[{"i", "=", 
+       RowBox[{"Nearest", "[", 
+        RowBox[{
+         RowBox[{"trainingFaces", "->", "Automatic"}], ",", 
+         RowBox[{"eigenCompress", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "@", "face"}], ",", "eigenfaces", ",", 
+           "depth"}], "]"}], ",", "n"}], "]"}]}], ";", "\n", 
+      RowBox[{"Return", "[", 
+       RowBox[{"Map", "[", 
+        RowBox[{"Image", ",", 
+         RowBox[{"neutralFaces", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], "]"}], "]"}]}]}], "\n", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"recognizeFace", "[", 
+  RowBox[{"me", ",", "3"}], "]"}]}], "Code"],
 
 Cell[BoxData[
  RowBox[{"Dimensions", "@", "neutralFaces"}]], "Code"],
@@ -303,9 +397,70 @@ InitializationCellEvaluation->Automatic,
 InitializationCellWarning->True,
 NotebookEventActions->None,
 NotebookDynamicExpression:>Null,
-WindowSize->{960, 1013},
-WindowMargins->{{-9, Automatic}, {Automatic, -8}},
+WindowSize->{960, 1028},
+WindowMargins->{{-10, Automatic}, {Automatic, -10}},
 TrackCellChangeTimes->False,
-FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
-StyleDefinitions->"Default.nb"
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (December 10, 2015)",
+StyleDefinitions->FrontEnd`FileName[{"Article"}, "JournalArticle.nb", 
+  CharacterEncoding -> "UTF-8"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 30, 0, 52, "Section"],
+Cell[613, 24, 267, 6, 71, "Code"],
+Cell[883, 32, 438, 13, 90, "Code"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1358, 50, 77, 0, 52, "Section"],
+Cell[1438, 52, 113, 3, 23, "Text"],
+Cell[1554, 57, 562, 16, 109, "Code"],
+Cell[2119, 75, 51, 0, 23, "Text"],
+Cell[2173, 77, 208, 5, 71, "Code"],
+Cell[2384, 84, 556, 15, 128, "Code"],
+Cell[2943, 101, 452, 13, 109, "Code"],
+Cell[3398, 116, 458, 13, 109, "Code",
+ InitializationCell->False],
+Cell[3859, 131, 57, 0, 23, "Text"],
+Cell[3919, 133, 826, 24, 90, "Code",
+ InitializationCell->False]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4782, 162, 68, 0, 52, "Section"],
+Cell[4853, 164, 134, 3, 23, "Text"],
+Cell[4990, 169, 312, 5, 41, "Text"],
+Cell[5305, 176, 1002, 28, 148, "Code"],
+Cell[6310, 206, 230, 4, 41, "Text"],
+Cell[6543, 212, 813, 22, 110, "Code"],
+Cell[7359, 236, 153, 3, 23, "Text"],
+Cell[7515, 241, 199, 5, 71, "Code"],
+Cell[7717, 248, 233, 4, 41, "Text"],
+Cell[7953, 254, 296, 7, 71, "Code",
+ InitializationCell->False],
+Cell[8252, 263, 145, 3, 23, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8434, 271, 50, 0, 52, "Section"],
+Cell[8487, 273, 221, 4, 41, "Text"],
+Cell[8711, 279, 326, 9, 71, "Code"],
+Cell[9040, 290, 726, 21, 110, "Code"],
+Cell[9769, 313, 296, 8, 51, "Code"],
+Cell[10068, 323, 280, 8, 71, "Code"],
+Cell[10351, 333, 838, 24, 129, "Code"],
+Cell[11192, 359, 68, 1, 51, "Code"],
+Cell[11263, 362, 496, 16, 51, "Code"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

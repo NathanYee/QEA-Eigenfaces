@@ -51,9 +51,17 @@ eigenfaces=Map[Normalize,eigenfaces];
 Dimensions@eigenfaces
 
 
-decompose[face_,eigenfaces_,n_]:=Module[{},
+eigenCompress[image_,eigenfaces_,n_]:=Module[{imageFlat},
 (* face is a 1d vector here, and is treated implicitly as a row vector. *)
-eigenfaces[[1;;n]].face
+(*TODO: make face an image input*)
+imageFlat=Flatten@image;
+Return[eigenfaces[[1;;n]].imageFlat]
+]
+
+
+eigenDecompress[compressedImage_,eigenfaces_,n_]:=Module[{decompressedData},
+decompressedData=Partition[Total[MapThread[Times,{compressedImage,eigenfaces[[1;;n]]}]],256];
+Return[Image@decompressedData]
 ]
 
 
@@ -61,23 +69,28 @@ Clear@depth;
 depth:=30;
 
 
-trainingFaces=decompose[#,eigenfaces,depth]&/@normalizedFaces;
+trainingFaces=Map[eigenCompress[#,eigenfaces,depth]&,normalizedFaces];
+Dimensions@trainingFaces
 
 
 recognizeFace[face_]:=Module[{i},
-i=Nearest[trainingFaces->Automatic,decompose[Flatten@face,eigenfaces,depth]][[1]];
+i=Nearest[trainingFaces->Automatic,eigenCompress[Flatten@face,eigenfaces,depth],2][[1]];
 {Image[neutralFaces[[i]]]}
 ]
 
 
-Nearest[trainingFaces->Image/@neutralFaces,decompose[Flatten@me,eigenfaces,depth]]
+Nearest[trainingFaces->Image/@neutralFaces,eigenCompress[Flatten@me,eigenfaces,depth],3]
 
 
 Length@trainingFaces[[1]]
-Length@decompose[Flatten@me,eigenfaces,depth]
+Length@eigenCompress[Flatten@me,eigenfaces,depth]
 
 
-recognizeFace[me]
+recognizeFace[face_,n_]:=Module[{i},
+i=Nearest[trainingFaces->Automatic,eigenCompress[Flatten@face,eigenfaces,depth],n];
+Return[Map[Image,neutralFaces[[i]]]]
+];
+recognizeFace[me,3]
 
 
 Dimensions@neutralFaces
