@@ -1,5 +1,10 @@
 (* ::Package:: *)
 
+(* These lines allow us to load Imports.m with Needs["Imports`"] *)
+BeginPackage["Imports`"]
+EndPackage[]
+
+
 (* ::Section:: *)
 (*Importing faces*)
 
@@ -150,5 +155,4 @@ standardized=data-Map[Mean,data];
 Return[standardized]]
 
 
-(* ::Code:: *)
 (*standardize[{Range@1,Range@2,Range@3,Range@4}]*)
