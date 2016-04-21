@@ -25,30 +25,25 @@ Needs["Imports`"]
 
 neutralFaces=images[[Range[1,Length@images,8]]];
 Dimensions@neutralFaces
-m=Dimensions[neutralFaces][[1]]
 
 
-flattenedNeutralFaces=Transpose@Flatten[neutralFaces,{2,3}];
+flattenedNeutralFaces=Map[Flatten, neutralFaces];
 Dimensions@flattenedNeutralFaces
-normalizedFaces=#/Mean[#]&/@flattenedNeutralFaces;
-Dimensions@normalizedFaces
 
 
-corr1=normalizedFaces.Transpose[normalizedFaces];
-Dimensions@corr1
+normalizedFaces=Map[#-Mean[#]&, flattenedNeutralFaces];
 
 
-{lambdas,vectors} = Eigensystem[corr1];
-lambdas=Sqrt/@lambdas;
-vectors=Transpose@vectors;
-Dimensions@lambdas
-Dimensions@vectors
-
-
-eigenfaces=Transpose[normalizedFaces].vectors;
-eigenfaces=Transpose[eigenfaces];
-eigenfaces=Map[Normalize,eigenfaces];
-Dimensions@eigenfaces
+findEigenfaces[normalizedFaces_]:=
+Module[\!\(TraditionalForm\`{A\  = \ normalizedFaces . Transpose[normalizedFaces], lambdas, vectors, eigenvalues, eigenfaces}\),
+{lambdas,vectors} = Eigensystem[A];
+vectors = Transpose@vectors;
+eigenvalues = Sqrt/@lambdas;
+eigenfaces = Transpose[normalizedFaces].vectors;
+eigenfaces = Transpose[eigenfaces];
+eigenfaces = Map[Normalize,eigenfaces];
+{eigenvalues,eigenfaces}
+]
 
 
 decompose[face_,eigenfaces_,n_]:=Module[{},
