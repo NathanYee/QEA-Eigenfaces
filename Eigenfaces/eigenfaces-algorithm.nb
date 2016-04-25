@@ -11,8 +11,6 @@ Cell[BoxData[{
  CellChangeTimes->{
   3.670233912893641*^9, {3.670234238014649*^9, 3.670234249251326*^9}}],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"neutralFaces", "=", 
@@ -22,12 +20,7 @@ Cell[BoxData[{
       RowBox[{"1", ",", 
        RowBox[{"Length", "@", "images"}], ",", "8"}], "]"}], "]"}], "]"}]}], 
   ";"}], "\n", 
- RowBox[{"Dimensions", "@", "neutralFaces"}]}], "Code"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"43", ",", "360", ",", "256"}], "}"}]], "Output"]
-}, Open  ]]
+ RowBox[{"Dimensions", "@", "neutralFaces"}]}], "Code"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -45,19 +38,12 @@ into a one-dimensional vector. The resulting output is a list of image \
 vectors, alternately interpreted as a matrix containing image vectors as rows.\
 \>", "Text"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"flattenedNeutralFaces", "=", 
    RowBox[{"Map", "[", 
     RowBox[{"Flatten", ",", " ", "neutralFaces"}], "]"}]}], ";"}], "\n", 
  RowBox[{"Dimensions", "@", "flattenedNeutralFaces"}]}], "Code"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"43", ",", "92160"}], "}"}]], "Output"]
-}, Open  ]],
 
 Cell["\<\
 Next, to remove any differences in image brightness, we subtract the mean of \
@@ -214,8 +200,6 @@ Cell[BoxData[
       RowBox[{"eigenvalues", ",", "eigenfaces"}], "}"}]}]}], 
    "\[IndentingNewLine]", "]"}]}]], "Code"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{
@@ -224,22 +208,13 @@ Cell[BoxData[{
    RowBox[{"findEigenfaces", "[", "normalizedFaces", "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"Dimensions", "@", "eigenfaces"}], "\[IndentingNewLine]", 
- RowBox[{"Dimensions", "@", "eigenvalues"}]}], "Input"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"43", ",", "92160"}], "}"}]], "Output"],
-
-Cell[BoxData[
- RowBox[{"{", "43", "}"}]], "Output"]
-}, Open  ]],
+ RowBox[{"Dimensions", "@", "eigenvalues"}]}], "Input",
+ InitializationCell->True],
 
 Cell["\<\
 As expected, the eigenfaces are all orthogonal (or nearly so) because they \
 are eigenvectors of a correlation matrix. \
 \>", "Text"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Do", "[", 
@@ -249,17 +224,6 @@ Cell[BoxData[
      RowBox[{"RandomChoice", "[", "eigenfaces", "]"}], ".", 
      RowBox[{"RandomChoice", "[", "eigenfaces", "]"}]}], "]"}], ",", "3"}], 
   "]"}]], "Input"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData["1.061650767297806`*^-15"], "Print"],
-
-Cell[BoxData[
- RowBox[{"-", "3.400058012914542`*^-16"}]], "Print"],
-
-Cell[BoxData["5.898059818321144`*^-16"], "Print"]
-}, Open  ]]
-}, Open  ]],
 
 Cell[TextData[{
  "Interestingly, because the eigenfaces are 92,160-element vectors, it is \
@@ -337,6 +301,9 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"imageFlat", "=", 
       RowBox[{"Flatten", "@", "image"}]}], ";", "\n", 
+     RowBox[{"imageFlat", "=", 
+      RowBox[{"imageFlat", " ", "-", " ", 
+       RowBox[{"Mean", "@", "imageFlat"}]}]}], ";", "\n", 
      RowBox[{"Return", "[", 
       RowBox[{
        RowBox[{"eigenfaces", "[", 
@@ -371,7 +338,8 @@ Cell[BoxData[
                RowBox[{"1", ";;", "n"}], "]"}], "]"}]}], "}"}]}], "]"}], 
          "]"}], ",", "256"}], "]"}]}], ";", "\n", 
      RowBox[{"Return", "[", 
-      RowBox[{"Image", "@", "decompressedData"}], "]"}]}]}], "\n", 
+      RowBox[{"ImageAdjust", "@", 
+       RowBox[{"Image", "@", "decompressedData"}]}], "]"}]}]}], "\n", 
    "]"}]}]], "Code"],
 
 Cell["\<\
@@ -459,7 +427,8 @@ Cell[BoxData[
    RowBox[{"eigenCompress", "[", 
     RowBox[{
      RowBox[{"Flatten", "@", "me"}], ",", "eigenfaces", ",", "depth"}], "]"}],
-    ",", "3"}], "]"}]], "Code"],
+    ",", "3"}], "]"}]], "Code",
+ InitializationCell->False],
 
 Cell[BoxData[{
  RowBox[{"Length", "@", 
@@ -469,9 +438,10 @@ Cell[BoxData[{
   RowBox[{"eigenCompress", "[", 
    RowBox[{
     RowBox[{"Flatten", "@", "me"}], ",", "eigenfaces", ",", "depth"}], 
-   "]"}]}]}], "Code"],
+   "]"}]}]}], "Code",
+ InitializationCell->False],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"recognizeFace", "[", 
@@ -493,12 +463,16 @@ Cell[BoxData[{
         RowBox[{"Image", ",", 
          RowBox[{"neutralFaces", "[", 
           RowBox[{"[", "i", "]"}], "]"}]}], "]"}], "]"}]}]}], "\n", "]"}]}], 
-  ";"}], "\n", 
- RowBox[{"recognizeFace", "[", 
-  RowBox[{"me", ",", "3"}], "]"}]}], "Code"],
+  ";"}]], "Code"],
 
 Cell[BoxData[
- RowBox[{"Dimensions", "@", "neutralFaces"}]], "Code"],
+ RowBox[{"recognizeFace", "[", 
+  RowBox[{"me", ",", "3"}], "]"}]], "Code",
+ InitializationCell->False],
+
+Cell[BoxData[
+ RowBox[{"Dimensions", "@", "neutralFaces"}]], "Code",
+ InitializationCell->False],
 
 Cell[BoxData[
  RowBox[{"Grid", "@", 
@@ -516,7 +490,8 @@ Cell[BoxData[
       RowBox[{"images", "[", 
        RowBox[{"[", 
         RowBox[{"3", ";;", "100", ";;", "8"}], "]"}], "]"}]}], "}"}]}], 
-   "]"}]}]], "Code"]
+   "]"}]}]], "Code",
+ InitializationCell->False]
 }, Open  ]]
 },
 EvaluatorNames->{"Local" -> {"AutoStartOnLaunch" -> True}},
