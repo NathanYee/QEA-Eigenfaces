@@ -17,7 +17,8 @@ imageFiles=FileNames["*.png",imageDirectory];
 images=Import[FileNameJoin[{ParentDirectory[],"data","classdata.mat"}]][[1]];
 
 
-me = images[[82]];
+eric = images[[82]];
+nathan = images[[234]];
 
 
 (* ::Subsection::Closed:: *)

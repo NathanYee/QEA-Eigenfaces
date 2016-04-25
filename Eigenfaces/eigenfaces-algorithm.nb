@@ -351,22 +351,19 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"Clear", "@", "depth"}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"depth", ":=", "30"}], ";"}]}], "Code",
- CellChangeTimes->{{3.670234585380802*^9, 3.670234602720825*^9}}],
+  RowBox[{"depth", ":=", "30"}], ";"}]}], "Code"],
 
 Cell["\<\
-Now, compress and uncompress an image not in the training set.  \
-\[OpenCurlyDoubleQuote]me\[CloseCurlyDoubleQuote] is an image of Eric that we \
-will use to verify the compression and decompression functions.\
+Now, compress and uncompress an image not in the training set. \
 \>", "Text"],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"eigenme", "=", 
+  RowBox[{"eigeneric", "=", 
    RowBox[{"eigenCompress", "[", 
-    RowBox[{"me", ",", "eigenfaces", ",", "depth"}], "]"}]}], ";"}], "\n", 
+    RowBox[{"eric", ",", "eigenfaces", ",", "depth"}], "]"}]}], ";"}], "\n", 
  RowBox[{"eigenDecompress", "[", 
-  RowBox[{"eigenme", ",", "eigenfaces", ",", "depth"}], "]"}]}], "Code",
+  RowBox[{"eigeneric", ",", "eigenfaces", ",", "depth"}], "]"}]}], "Code",
  InitializationCell->False],
 
 Cell["\<\
@@ -465,9 +462,11 @@ Cell[BoxData[
           RowBox[{"[", "i", "]"}], "]"}]}], "]"}], "]"}]}]}], "\n", "]"}]}], 
   ";"}]], "Code"],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{"recognizeFace", "[", 
-  RowBox[{"me", ",", "3"}], "]"}]], "Code",
+  RowBox[{"eric", ",", "3"}], "]"}], "\n", 
+ RowBox[{"recognizeFace", "[", 
+  RowBox[{"nathan", ",", "3"}], "]"}]}], "Code",
  InitializationCell->False],
 
 Cell[BoxData[
