@@ -1,0 +1,82 @@
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Get", "[", "\"\<eigenfaces-algorithm.m\>\"", "]"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.67058897489854*^9, 3.6705890135036297`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"analyze", "[", 
+   RowBox[{"training_", ",", "testing_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"normalizedFaces", "=", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "-", 
+          RowBox[{"Mean", "[", "#", "]"}]}], "&"}], ",", " ", 
+        RowBox[{"Flatten", "/@", "training"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"eigenvalues", ",", " ", "eigenfaces"}], "}"}], "=", 
+      RowBox[{"findEigenfaces", "[", "normalizedFaces", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"trainingFaces", "=", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"eigenCompress", "[", 
+          RowBox[{"#", ",", "eigenfaces", ",", "depth"}], "]"}], "&"}], ",", 
+        "normalizedFaces"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Grid", "@", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Image", "[", "face", "]"}], ",", "\"\<\[Rule]\>\""}], 
+           "}"}], ",", 
+          RowBox[{"recognizeFace", "[", "face", "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"face", ",", "testing"}], "}"}]}], "]"}]}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.6705894088917723`*^9, 3.670589420660891*^9}, {
+  3.670589552234806*^9, 3.670589612977295*^9}, {3.670589647301201*^9, 
+  3.6705896497688*^9}, {3.670589708650105*^9, 3.6705897405054817`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Neutral faces training", "Title",
+ CellChangeTimes->{{3.6705889377626543`*^9, 3.670588949453114*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Train on 43, test on 301 (sampled)", "Chapter",
+ CellChangeTimes->{{3.670589377324398*^9, 3.670589395756258*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"training", "=", 
+   RowBox[{"images", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ";;", "All", ";;", "8"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.670589073248901*^9, 3.6705890752984257`*^9}, {
+  3.670589748682679*^9, 3.670589781167142*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{828, 930},
+WindowMargins->{{Automatic, 204}, {32, Automatic}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+
