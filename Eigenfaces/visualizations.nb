@@ -10,24 +10,35 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     61137,       1232]
-NotebookOptionsPosition[     60563,       1207]
-NotebookOutlinePosition[     60901,       1222]
-CellTagsIndexPosition[     60858,       1219]
+NotebookDataLength[     61571,       1244]
+NotebookOptionsPosition[     60994,       1219]
+NotebookOutlinePosition[     61332,       1234]
+CellTagsIndexPosition[     61289,       1231]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{"SetDirectory", "[", 
-  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Get", "[", "\"\<eigenfaces-algorithm.m\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"eigenvalues", ",", " ", "eigenfaces"}], "}"}], "=", 
+   RowBox[{"findEigenfaces", "[", "normalizedFaces", "]"}]}], ";"}]}], "Input",\
+
  CellChangeTimes->{{3.670581688068183*^9, 3.670581699565454*^9}, {
-  3.670585135495201*^9, 3.670585141586047*^9}}],
+  3.670585135495201*^9, 3.670585141586047*^9}, {3.670587849291079*^9, 
+  3.67058794049184*^9}}],
 
 Cell[BoxData["\<\"/home/nathan/QEA-Eigenfaces/Eigenfaces\"\>"], "Output",
- CellChangeTimes->{3.670581700141862*^9, 3.670585141968252*^9}]
+ CellChangeTimes->{
+  3.670581700141862*^9, 3.670585141968252*^9, 3.670587878148341*^9, {
+   3.670587914213739*^9, 3.6705879645025597`*^9}}]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -90,7 +101,7 @@ Cell[BoxData[
 {-35.35766469750044, -16.204737758053952`}, {-25.187439956903084`, \
 -15.557220253721662`}, {-37.94352067615671, -19.810534673510027`}, \
 {-40.32516477093324, -19.200241056940357`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {1}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {1}}]& ], 
     TagBox[
      {RGBColor[0.880722, 0.611041, 0.142051], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -100,7 +111,7 @@ Cell[BoxData[
        19.539702650581724`, 19.453557486571523`}, {23.14032560158664, 
        17.424800178169743`}, {15.995576543120558`, 17.057254829087626`}, {
        19.998468769729005`, 12.325859463694677`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {2}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {2}}]& ], 
     TagBox[
      {RGBColor[0.560181, 0.691569, 0.194885], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -111,7 +122,7 @@ Cell[BoxData[
        16.5796091968962}, {-63.525476990659, 
        10.62995145153999}, {-58.977078857016956`, -4.482086915828248}, \
 {-66.14627780468737, 5.139209544901177}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {3}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {3}}]& ], 
     TagBox[
      {RGBColor[0.922526, 0.385626, 0.209179], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -123,7 +134,7 @@ Cell[BoxData[
        23.911513894752442`, -6.435984306969465}, {
        19.583894511264578`, -13.207381256392914`}, {
        22.426917905977923`, -9.531385705529894}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {4}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {4}}]& ], 
     TagBox[
      {RGBColor[0.528488, 0.470624, 0.701351], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -133,7 +144,7 @@ Cell[BoxData[
 {-11.811184967399821`, -22.15043741647742}, {-5.91956333215521, \
 -8.46914192814289}, {-0.6289020875529596, -14.344069587318723`}, \
 {-1.0782803554121383`, -10.005197609806702`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {5}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {5}}]& ], 
     TagBox[
      {RGBColor[0.772079, 0.431554, 0.102387], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -143,7 +154,7 @@ Cell[BoxData[
 {-44.13609310918842, -26.9114682456844}, {-43.26708140375273, \
 -27.79748558727666}, {-44.07714173329141, -30.215926209489183`}, \
 {-42.98033033173762, -25.282433168929398`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {6}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {6}}]& ], 
     TagBox[
      {RGBColor[0.363898, 0.618501, 0.782349], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -155,7 +166,7 @@ Cell[BoxData[
        4.433596190483168, -5.136886192766918}, {
        2.5408902455190754`, -7.234944037047416}, {2.0070791139269435`, 
        1.3695613593710574`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {7}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {7}}]& ], 
     TagBox[
      {RGBColor[1, 0.75, 0], PointSize[Large], AbsoluteThickness[1.6], 
       PointBox[{{3.9997905512336622`, -9.933250344661335}, {
@@ -165,7 +176,7 @@ Cell[BoxData[
        3.233732128035948, -12.000825882932665`}, {
        2.5889658988192092`, -5.730476980230517}, {14.46630452333332, 
        5.092931863587117}, {3.4135333181228997`, -12.537546058375796`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {8}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {8}}]& ], 
     TagBox[
      {RGBColor[0.647624, 0.37816, 0.614037], PointSize[Large], 
       AbsoluteThickness[1.6], 
@@ -177,7 +188,7 @@ Cell[BoxData[
        21.93259422238289, -20.840602567222078`}, {
        21.459593693141375`, -18.058790123832097`}, {
        22.660409652972998`, -18.798493960851943`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {9}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {9}}]& ], 
     TagBox[
      {RGBColor[0.571589, 0.586483, 0.], PointSize[Large], AbsoluteThickness[
       1.6], PointBox[{{5.424666233111536, 33.899779422647846`}, {
@@ -186,7 +197,7 @@ Cell[BoxData[
        6.532813011720799, 28.845642671069463`}, {8.200707270646637, 
        31.890083042574634`}, {10.978071960632, 37.27729733663287}, {
        11.958596667368958`, 40.792373701389394`}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {10}}]& ], 
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {10}}]& ], 
     TagBox[
      {RGBColor[0.915, 0.3325, 0.2125], PointSize[Large], AbsoluteThickness[
       1.6], PointBox[{{-59.61925894944689, 
@@ -197,7 +208,7 @@ Cell[BoxData[
        36.39295412099001}, {-58.885515113528285`, 
        37.3505040178044}, {-53.27839332925194, 
        33.390992339211444`}, {-53.12556566645011, 47.55364758825709}}]},
-     Annotation[#, {{Labeled}, Charting`Private`Tag$351667, {11}}]& ], {}}, {
+     Annotation[#, {{Labeled}, Charting`Private`Tag$1265, {11}}]& ], {}}, {
     {RGBColor[0.24561133333333335`, 0.3378526666666667, 0.4731986666666667], 
      InsetBox[
       TemplateBox[{"\"Emily\""},
@@ -913,7 +924,7 @@ Cell[BoxData[
   GridLines->{None, None},
   GridLinesStyle->Directive[
     GrayLevel[0.5, 0.4]],
-  ImageSize->{823., Automatic},
+  ImageSize->Large,
   Method->{},
   PlotRange->{{-72.49469249952219, 
    31.180134468887722`}, {-30.215926209489183`, 47.55364758825709}},
@@ -928,7 +939,7 @@ Cell[BoxData[
    3.670585858280397*^9, 3.670585865364819*^9}, {3.6705859172864113`*^9, 
    3.67058596965219*^9}, {3.670586044511471*^9, 3.670586070461961*^9}, {
    3.670586103366857*^9, 3.670586131157257*^9}, 3.6705870178253593`*^9, 
-   3.670587069929338*^9, 3.670587111225308*^9}]
+   3.670587069929338*^9, 3.670587111225308*^9, 3.6705879819843903`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1202,7 +1213,8 @@ Cell[BoxData[
   ViewVertical->{0.1574811712973152, 0.0004019907522567756, 
    2.4688047703927762`}]], "Output",
  CellChangeTimes->{{3.670587417285891*^9, 3.6705874422980337`*^9}, 
-   3.67058752659972*^9, {3.670587590205914*^9, 3.670587597161456*^9}}]
+   3.67058752659972*^9, {3.670587590205914*^9, 3.670587597161456*^9}, 
+   3.670587982705125*^9}]
 }, Open  ]]
 },
 WindowSize->{1920, 1056},
@@ -1222,17 +1234,17 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 219, 4, 32, "Input"],
-Cell[802, 28, 137, 1, 32, "Output"]
+Cell[580, 22, 557, 13, 77, "Input"],
+Cell[1140, 37, 214, 3, 32, "Output"]
 }, Open  ]],
-Cell[954, 32, 1115, 30, 77, "Input"],
+Cell[1369, 43, 1115, 30, 77, "Input"],
 Cell[CellGroupData[{
-Cell[2094, 66, 626, 13, 32, "Input"],
-Cell[2723, 81, 42201, 849, 524, "Output"]
+Cell[2509, 77, 626, 13, 32, "Input"],
+Cell[3138, 92, 42191, 849, 372, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[44961, 935, 1349, 38, 99, "Input"],
-Cell[46313, 975, 14234, 229, 419, "Output"]
+Cell[45366, 946, 1349, 38, 99, "Input"],
+Cell[46718, 986, 14260, 230, 419, "Output"]
 }, Open  ]]
 }
 ]
