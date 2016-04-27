@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     18948,        613]
-NotebookOptionsPosition[     15948,        516]
-NotebookOutlinePosition[     16960,        552]
-CellTagsIndexPosition[     16917,        549]
+NotebookDataLength[     19065,        615]
+NotebookOptionsPosition[     16061,        518]
+NotebookOutlinePosition[     17073,        554]
+CellTagsIndexPosition[     17030,        551]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -185,39 +185,41 @@ Cell["Implementing the above equation in code:", "Text"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"findEigenfaces", "[", "normalizedFaces_", "]"}], ":=", "\n", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    FormBox[
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"A", " ", "=", " ", 
-        RowBox[{"normalizedFaces", ".", 
-         RowBox[{"Transpose", "[", "normalizedFaces", "]"}]}]}], ",", 
-       "lambdas", ",", "vectors", ",", "eigenvalues", ",", "eigenfaces"}], 
-      "}"}],
-     TraditionalForm], ",", "\n", 
+  RowBox[{"findEigenfaces", "[", "normalizedFaces_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"findEigenfaces", "[", "normalizedFaces", "]"}], "=", "\n", 
+   RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{
+     FormBox[
       RowBox[{"{", 
-       RowBox[{"lambdas", ",", "vectors"}], "}"}], " ", "=", " ", 
-      RowBox[{"Eigensystem", "[", "A", "]"}]}], ";", "\n", 
-     RowBox[{"vectors", " ", "=", " ", 
-      RowBox[{"Transpose", "@", "vectors"}]}], ";", "\n", 
-     RowBox[{"eigenvalues", " ", "=", " ", 
-      RowBox[{"Sqrt", "/@", "lambdas"}]}], ";", "\n", 
-     RowBox[{"eigenfaces", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"A", " ", "=", " ", 
+         RowBox[{"normalizedFaces", ".", 
+          RowBox[{"Transpose", "[", "normalizedFaces", "]"}]}]}], ",", 
+        "lambdas", ",", "vectors", ",", "eigenvalues", ",", "eigenfaces"}], 
+       "}"}],
+      TraditionalForm], ",", "\n", 
+     RowBox[{
       RowBox[{
-       RowBox[{"Transpose", "[", "normalizedFaces", "]"}], ".", "vectors"}]}],
-      ";", "\n", 
-     RowBox[{"eigenfaces", " ", "=", " ", 
-      RowBox[{"Transpose", "[", "eigenfaces", "]"}]}], ";", "\n", 
-     RowBox[{"eigenfaces", " ", "=", " ", 
-      RowBox[{"Map", "[", 
-       RowBox[{"Normalize", ",", "eigenfaces"}], "]"}]}], ";", "\n", 
-     RowBox[{"{", 
-      RowBox[{"eigenvalues", ",", "eigenfaces"}], "}"}]}]}], 
-   "\[IndentingNewLine]", "]"}]}]], "Code"],
+       RowBox[{"{", 
+        RowBox[{"lambdas", ",", "vectors"}], "}"}], " ", "=", " ", 
+       RowBox[{"Eigensystem", "[", "A", "]"}]}], ";", "\n", 
+      RowBox[{"vectors", " ", "=", " ", 
+       RowBox[{"Transpose", "@", "vectors"}]}], ";", "\n", 
+      RowBox[{"eigenvalues", " ", "=", " ", 
+       RowBox[{"Sqrt", "/@", "lambdas"}]}], ";", "\n", 
+      RowBox[{"eigenfaces", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"Transpose", "[", "normalizedFaces", "]"}], ".", 
+        "vectors"}]}], ";", "\n", 
+      RowBox[{"eigenfaces", " ", "=", " ", 
+       RowBox[{"Transpose", "[", "eigenfaces", "]"}]}], ";", "\n", 
+      RowBox[{"eigenfaces", " ", "=", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{"Normalize", ",", "eigenfaces"}], "]"}]}], ";", "\n", 
+      RowBox[{"{", 
+       RowBox[{"eigenvalues", ",", "eigenfaces"}], "}"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}]}]], "Code"],
 
 Cell[BoxData[{
  RowBox[{
@@ -574,50 +576,48 @@ Cell[4217, 139, 324, 11, 48, "Equation"],
 Cell[4544, 152, 354, 13, 48, "Equation"],
 Cell[4901, 167, 389, 14, 48, "EquationNumbered"],
 Cell[5293, 183, 56, 0, 32, "Text"],
-Cell[5352, 185, 1355, 34, 319, "Code"],
-Cell[6710, 221, 365, 9, 98, "Input",
+Cell[5352, 185, 1468, 36, 319, "Code"],
+Cell[6823, 223, 365, 9, 98, "Input",
  InitializationCell->True],
-Cell[7078, 232, 143, 3, 32, "Text"],
-Cell[7224, 237, 241, 7, 43, "Input"],
-Cell[7468, 246, 368, 8, 57, "Text"],
-Cell[7839, 256, 781, 23, 98, "Input",
+Cell[7191, 234, 143, 3, 32, "Text"],
+Cell[7337, 239, 241, 7, 43, "Input"],
+Cell[7581, 248, 368, 8, 57, "Text"],
+Cell[7952, 258, 781, 23, 98, "Input",
  InitializationCell->False]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8669, 285, 68, 0, 75, "Section"],
-Cell[8740, 287, 134, 3, 32, "Text"],
-Cell[8877, 292, 312, 5, 57, "Text"],
-Cell[9192, 299, 1136, 31, 238, "Code"],
-Cell[10331, 332, 230, 4, 32, "Text"],
-Cell[10564, 338, 851, 23, 157, "Code"],
-Cell[11418, 363, 153, 3, 32, "Text"],
-Cell[11574, 368, 133, 4, 103, "Code"],
-Cell[11710, 374, 87, 2, 32, "Text"],
-Cell[11800, 378, 302, 7, 103, "Code",
+Cell[8782, 287, 68, 0, 75, "Section"],
+Cell[8853, 289, 134, 3, 32, "Text"],
+Cell[8990, 294, 312, 5, 57, "Text"],
+Cell[9305, 301, 1136, 31, 238, "Code"],
+Cell[10444, 334, 230, 4, 32, "Text"],
+Cell[10677, 340, 851, 23, 157, "Code"],
+Cell[11531, 365, 153, 3, 32, "Text"],
+Cell[11687, 370, 133, 4, 103, "Code"],
+Cell[11823, 376, 87, 2, 48, "Text"],
+Cell[11913, 380, 302, 7, 154, "Code",
  InitializationCell->False],
-Cell[12105, 387, 145, 3, 32, "Text"]
+Cell[12218, 389, 145, 3, 48, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12287, 395, 50, 0, 75, "Section"],
-Cell[12340, 397, 221, 4, 32, "Text"],
-Cell[12564, 403, 326, 9, 103, "Code"],
-Cell[12893, 414, 726, 21, 157, "Code"],
-Cell[13622, 437, 324, 9, 75, "Code",
+Cell[12400, 397, 50, 0, 112, "Section"],
+Cell[12453, 399, 221, 4, 48, "Text"],
+Cell[12677, 405, 326, 9, 154, "Code"],
+Cell[13006, 416, 726, 21, 235, "Code"],
+Cell[13735, 439, 324, 9, 112, "Code",
  InitializationCell->False],
-Cell[13949, 448, 308, 9, 103, "Code",
+Cell[14062, 450, 308, 9, 154, "Code",
  InitializationCell->False],
-Cell[14260, 459, 844, 24, 157, "Code"],
-Cell[15107, 485, 199, 5, 103, "Code",
+Cell[14373, 461, 844, 24, 235, "Code"],
+Cell[15220, 487, 199, 5, 154, "Code",
  InitializationCell->False],
-Cell[15309, 492, 96, 2, 75, "Code",
+Cell[15422, 494, 96, 2, 112, "Code",
  InitializationCell->False],
-Cell[15408, 496, 524, 17, 75, "Code",
+Cell[15521, 498, 524, 17, 112, "Code",
  InitializationCell->False]
 }, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 

@@ -34,7 +34,7 @@ Dimensions@flattenedNeutralFaces
 normalizedFaces=Map[#-Mean[#]&, flattenedNeutralFaces];
 
 
-findEigenfaces[normalizedFaces_]:=
+findEigenfaces[normalizedFaces_]:=findEigenfaces[normalizedFaces]=
 Module[\!\(TraditionalForm\`{A\  = \ normalizedFaces . Transpose[normalizedFaces], lambdas, vectors, eigenvalues, eigenfaces}\),
 {lambdas,vectors} = Eigensystem[A];
 vectors = Transpose@vectors;
