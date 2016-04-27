@@ -21,6 +21,9 @@ eric = images[[82]];
 nathan = images[[234]];
 
 
+emotions={"Neutral","Happy","Winking","Angry","Sad","Concerned","Disgusted","Surprised"};
+
+
 (* ::Subsection::Closed:: *)
 (*Names*)
 

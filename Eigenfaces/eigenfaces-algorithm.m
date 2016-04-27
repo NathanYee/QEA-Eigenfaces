@@ -80,9 +80,9 @@ i=Nearest[trainingFaces->Automatic,eigenCompress[Flatten@face,eigenfaces,depth],
 ]
 
 
-recognizeFace[face_,n_]:=Module[{i},
+recognizeFace[face_,depth_,n_]:=Module[{i},
 i=Nearest[trainingFaces->Automatic,eigenCompress[Flatten@face,eigenfaces,depth],n];
-Return[Map[Image,neutralFaces[[i]]]]
+Return[{i,Map[Image,neutralFaces[[i]]]}]
 ];
 
 

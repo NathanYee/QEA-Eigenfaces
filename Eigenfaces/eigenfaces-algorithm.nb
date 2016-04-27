@@ -1,3 +1,22 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18948,        613]
+NotebookOptionsPosition[     15948,        516]
+NotebookOutlinePosition[     16960,        552]
+CellTagsIndexPosition[     16917,        549]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
@@ -442,7 +461,7 @@ Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"recognizeFace", "[", 
-    RowBox[{"face_", ",", "n_"}], "]"}], ":=", 
+    RowBox[{"face_", ",", "depth_", ",", "n_"}], "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", "i", "}"}], ",", "\n", 
@@ -456,11 +475,13 @@ Cell[BoxData[
            RowBox[{"Flatten", "@", "face"}], ",", "eigenfaces", ",", 
            "depth"}], "]"}], ",", "n"}], "]"}]}], ";", "\n", 
       RowBox[{"Return", "[", 
-       RowBox[{"Map", "[", 
-        RowBox[{"Image", ",", 
-         RowBox[{"neutralFaces", "[", 
-          RowBox[{"[", "i", "]"}], "]"}]}], "]"}], "]"}]}]}], "\n", "]"}]}], 
-  ";"}]], "Code"],
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Map", "[", 
+          RowBox[{"Image", ",", 
+           RowBox[{"neutralFaces", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], "}"}], "]"}]}]}], "\n",
+     "]"}]}], ";"}]], "Code"],
 
 Cell[BoxData[{
  RowBox[{"recognizeFace", "[", 
@@ -515,8 +536,88 @@ WindowSize->{1497, 1013},
 WindowMargins->{{-9, Automatic}, {Automatic, -8}},
 TrackCellChangeTimes->False,
 Magnification:>1.5 Inherited,
-FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (February 25, 2016)",
 StyleDefinitions->FrontEnd`FileName[{"Article"}, "JournalArticle.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 30, 0, 75, "Section"],
+Cell[613, 24, 267, 6, 103, "Code"],
+Cell[883, 32, 304, 9, 103, "Code"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1224, 46, 77, 0, 75, "Section"],
+Cell[CellGroupData[{
+Cell[1326, 50, 48, 0, 52, "Subsection"],
+Cell[1377, 52, 320, 5, 57, "Text"],
+Cell[1700, 59, 228, 5, 103, "Code"],
+Cell[1931, 66, 391, 6, 57, "Text"],
+Cell[2325, 74, 251, 8, 75, "Code"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2613, 87, 44, 0, 52, "Subsection"],
+Cell[2660, 89, 551, 12, 84, "Text"],
+Cell[3214, 103, 759, 25, 62, "Text"],
+Cell[3976, 130, 238, 7, 48, "EquationNumbered"],
+Cell[4217, 139, 324, 11, 48, "Equation"],
+Cell[4544, 152, 354, 13, 48, "Equation"],
+Cell[4901, 167, 389, 14, 48, "EquationNumbered"],
+Cell[5293, 183, 56, 0, 32, "Text"],
+Cell[5352, 185, 1355, 34, 319, "Code"],
+Cell[6710, 221, 365, 9, 98, "Input",
+ InitializationCell->True],
+Cell[7078, 232, 143, 3, 32, "Text"],
+Cell[7224, 237, 241, 7, 43, "Input"],
+Cell[7468, 246, 368, 8, 57, "Text"],
+Cell[7839, 256, 781, 23, 98, "Input",
+ InitializationCell->False]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8669, 285, 68, 0, 75, "Section"],
+Cell[8740, 287, 134, 3, 32, "Text"],
+Cell[8877, 292, 312, 5, 57, "Text"],
+Cell[9192, 299, 1136, 31, 238, "Code"],
+Cell[10331, 332, 230, 4, 32, "Text"],
+Cell[10564, 338, 851, 23, 157, "Code"],
+Cell[11418, 363, 153, 3, 32, "Text"],
+Cell[11574, 368, 133, 4, 103, "Code"],
+Cell[11710, 374, 87, 2, 32, "Text"],
+Cell[11800, 378, 302, 7, 103, "Code",
+ InitializationCell->False],
+Cell[12105, 387, 145, 3, 32, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12287, 395, 50, 0, 75, "Section"],
+Cell[12340, 397, 221, 4, 32, "Text"],
+Cell[12564, 403, 326, 9, 103, "Code"],
+Cell[12893, 414, 726, 21, 157, "Code"],
+Cell[13622, 437, 324, 9, 75, "Code",
+ InitializationCell->False],
+Cell[13949, 448, 308, 9, 103, "Code",
+ InitializationCell->False],
+Cell[14260, 459, 844, 24, 157, "Code"],
+Cell[15107, 485, 199, 5, 103, "Code",
+ InitializationCell->False],
+Cell[15309, 492, 96, 2, 75, "Code",
+ InitializationCell->False],
+Cell[15408, 496, 524, 17, 75, "Code",
+ InitializationCell->False]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
 
