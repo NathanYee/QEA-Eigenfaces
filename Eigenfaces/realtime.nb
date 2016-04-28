@@ -1,0 +1,38 @@
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"camface", "=", 
+   RowBox[{"ColorConvert", "[", 
+    RowBox[{
+     RowBox[{"ImageCrop", "[", 
+      RowBox[{
+       RowBox[{"ImageReflect", "[", 
+        RowBox[{
+         RowBox[{"CurrentImage", "[", 
+          RowBox[{"RasterSize", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"640", ",", "480"}], "}"}]}], "]"}], ",", "Left"}], "]"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"256", ",", "360"}], "}"}]}], "]"}], ",", 
+     "\"\<Grayscale\>\""}], "]"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.6707727619707127`*^9, 3.6707727762655134`*^9}, {
+  3.6707729580555487`*^9, 3.670773120204849*^9}, {3.6707731827024546`*^9, 
+  3.6707731895824957`*^9}, {3.670775253676133*^9, 3.6707752665684175`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "@", 
+  RowBox[{"recognizeFace", "[", 
+   RowBox[{
+    RowBox[{"ImageData", "@", "camface"}], ",", "All", ",", "1"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6707727277173157`*^9, 3.6707727496718187`*^9}, {
+  3.670773201844882*^9, 3.670773212687577*^9}, {3.6707752753007593`*^9, 
+  3.670775276336447*^9}}]
+},
+WindowSize->{1281, 1013},
+WindowMargins->{{Automatic, 32}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+

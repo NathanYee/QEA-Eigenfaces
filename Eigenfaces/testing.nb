@@ -1,22 +1,3 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
-
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
-
-(* CreatedBy='Mathematica 10.4' *)
-
-(*CacheID: 234*)
-(* Internal cache information:
-NotebookFileLineBreakTest
-NotebookFileLineBreakTest
-NotebookDataPosition[       158,          7]
-NotebookDataLength[     15427,        427]
-NotebookOptionsPosition[     14297,        388]
-NotebookOutlinePosition[     14675,        404]
-CellTagsIndexPosition[     14632,        401]
-WindowFrame->Normal*)
-
-(* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[{
  RowBox[{
@@ -88,6 +69,7 @@ Cell[BoxData[
         RowBox[{"{", 
          RowBox[{"face", ",", "testData"}], "}"}]}], "]"}]}]}]}], 
    "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
  CellChangeTimes->{{3.6705894088917723`*^9, 3.670589420660891*^9}, {
   3.670589552234806*^9, 3.670589612977295*^9}, {3.670589647301201*^9, 
   3.6705896497688*^9}, {3.670589708650105*^9, 3.6705897405054817`*^9}, {
@@ -97,10 +79,45 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{
   RowBox[{"FOM", "[", 
-   RowBox[{"trainingData_", ",", "testData_", ",", "numEF_"}], "]"}], ":=", 
+   RowBox[{"trainingData_", ",", "testData_", ",", 
+    RowBox[{"numEF_", "/;", 
+     RowBox[{"NumberQ", "[", "numEF", "]"}]}]}], "]"}], ":=", 
   RowBox[{"Module", "[", 
    RowBox[{
     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"FOM", "[", 
+      RowBox[{"trainingData", ",", "testData", ",", 
+       RowBox[{"{", 
+        RowBox[{"numEF", ",", "numEF"}], "}"}]}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6707701107191973`*^9, 3.6707701978144827`*^9}, {
+   3.6707704865568013`*^9, 3.6707705076717014`*^9}, {3.6707705792736015`*^9, 
+   3.670770581642401*^9}, {3.670770640824901*^9, 3.6707706467920012`*^9}, {
+   3.6707706847777014`*^9, 3.6707706873756013`*^9}, 3.6707707514833612`*^9, {
+   3.670771189088091*^9, 3.6707711921758723`*^9}, {3.670771951428216*^9, 
+   3.670771991461516*^9}, {3.670772021486516*^9, 3.670772044062916*^9}, {
+   3.670772123415516*^9, 3.6707721550956163`*^9}, {3.670772219125516*^9, 
+   3.670772219252816*^9}, {3.670772576364416*^9, 3.6707725923149157`*^9}, {
+   3.6707755435586753`*^9, 3.6707756391599627`*^9}, {3.67077572640427*^9, 
+   3.6707757479527807`*^9}, {3.670776207942305*^9, 3.6707762985853686`*^9}, {
+   3.6707763395214615`*^9, 3.6707763565491643`*^9}, {3.6707766686853747`*^9, 
+   3.6707766711836247`*^9}, 3.6707770819026923`*^9, {3.670837914588038*^9, 
+   3.670837947932942*^9}, {3.670838649630664*^9, 3.6708386663870087`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FOM", "[", 
+   RowBox[{"trainingData_", ",", "testData_", ",", 
+    RowBox[{"{", 
+     RowBox[{"numEFmin_", ",", "numEFmax_"}], "}"}]}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"allTrainingFaces", ",", "successpercent"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"neutralFaces", "=", 
       RowBox[{"trainingData", "[", 
@@ -122,13 +139,13 @@ Cell[BoxData[
        RowBox[{"eigenvalues", ",", " ", "eigenfaces"}], "}"}], "=", 
       RowBox[{"findEigenfaces", "[", "normalizedFaces", "]"}]}], ";", 
      "\[IndentingNewLine]", 
-     RowBox[{"trainingFaces", "=", 
+     RowBox[{"allTrainingFaces", "=", 
       RowBox[{"Map", "[", 
        RowBox[{
         RowBox[{
          RowBox[{"eigenCompress", "[", 
-          RowBox[{"#", ",", "eigenfaces", ",", "numEF"}], "]"}], "&"}], ",", 
-        "normalizedFaces"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"#", ",", "eigenfaces", ",", "numEFmax"}], "]"}], "&"}], 
+        ",", "normalizedFaces"}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"(*", 
       RowBox[{
        RowBox[{"Grid", "@", 
@@ -157,37 +174,48 @@ Cell[BoxData[
           RowBox[{"{", 
            RowBox[{"face", ",", "testData"}], "}"}]}], "]"}]}], ";"}], "*)"}],
       "\[IndentingNewLine]", 
-     RowBox[{"matchesFound", "=", 
-      RowBox[{"Table", "[", 
+     RowBox[{"Table", "[", "\[IndentingNewLine]", 
+      RowBox[{
        RowBox[{
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"face", "[", 
-           RowBox[{"[", "2", "]"}], "]"}], ",", 
+        RowBox[{"trainingFaces", "=", 
+         RowBox[{"allTrainingFaces", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", 
+            RowBox[{"1", ";;", "numEF"}]}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"matchesFound", "=", 
+         RowBox[{"Table", "[", 
           RowBox[{
-           RowBox[{"trainingData", "[", 
-            RowBox[{"[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"face", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], ",", 
              RowBox[{
-              RowBox[{"recognizeFace", "[", 
-               RowBox[{
-                RowBox[{"face", "[", 
-                 RowBox[{"[", "1", "]"}], "]"}], ",", "numEF", ",", "1"}], 
-               "]"}], "[", 
-              RowBox[{"[", 
-               RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}], "]"}], "[", 
-           RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"face", ",", "testData"}], "}"}]}], "]"}]}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"successpercent", "=", 
-      FractionBox[
-       RowBox[{"Length", "@", 
-        RowBox[{"Cases", "[", 
-         RowBox[{"matchesFound", ",", 
-          RowBox[{"{", 
-           RowBox[{"x_", ",", "x_"}], "}"}]}], "]"}]}], 
-       RowBox[{"Length", "@", "matchesFound"}]]}]}]}], "\[IndentingNewLine]", 
-   "]"}]}]], "Input",
+              RowBox[{"trainingData", "[", 
+               RowBox[{"[", 
+                RowBox[{
+                 RowBox[{"recognizeFace", "[", 
+                  RowBox[{
+                   RowBox[{"face", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", "numEF", ",", "1"}], 
+                  "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}], "]"}], "[", 
+              RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"face", ",", "testData"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"successpercent", "=", 
+         FractionBox[
+          RowBox[{"Length", "@", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"matchesFound", ",", 
+             RowBox[{"{", 
+              RowBox[{"x_", ",", "x_"}], "}"}]}], "]"}]}], 
+          RowBox[{"Length", "@", "matchesFound"}]]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"numEF", ",", "numEFmin", ",", "numEFmax"}], "}"}]}], 
+      "]"}]}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.6707701107191973`*^9, 3.6707701978144827`*^9}, {
    3.6707704865568013`*^9, 3.6707705076717014`*^9}, {3.6707705792736015`*^9, 
@@ -200,13 +228,19 @@ Cell[BoxData[
    3.6707755435586753`*^9, 3.6707756391599627`*^9}, {3.67077572640427*^9, 
    3.6707757479527807`*^9}, {3.670776207942305*^9, 3.6707762985853686`*^9}, {
    3.6707763395214615`*^9, 3.6707763565491643`*^9}, {3.6707766686853747`*^9, 
-   3.6707766711836247`*^9}, 3.6707770819026923`*^9}],
+   3.6707766711836247`*^9}, 3.6707770819026923`*^9, {3.670837888870792*^9, 
+   3.670837907468636*^9}, {3.670837960858905*^9, 3.670837993072959*^9}, {
+   3.670838076731545*^9, 3.6708381367842913`*^9}, {3.670838193699369*^9, 
+   3.6708382115666847`*^9}, 3.670838500093226*^9, {3.670838550586545*^9, 
+   3.670838591859991*^9}}],
 
 Cell[BoxData[
- RowBox[{"trainingFaces", "[", 
-  RowBox[{"[", 
-   RowBox[{"1", ";;", "5"}], "]"}], "]"}]], "Input",
- CellChangeTimes->{{3.6707707287801104`*^9, 3.670770754799379*^9}}],
+ RowBox[{"Table", "[", 
+  RowBox[{"i", ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "10", ",", "5", ",", 
+     RowBox[{"-", "1"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.670838058679516*^9, 3.6708380689181004`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -239,65 +273,25 @@ Cell["Train on 43, test on 301 (sampled)", "Chapter",
  CellChangeTimes->{{3.670589377324398*^9, 3.670589395756258*^9}}],
 
 Cell[BoxData[
- RowBox[{"ImageDimensions", "[", 
-  RowBox[{"CurrentImage", "[", "]"}], "]"}]], "Input",
- CellChangeTimes->{{3.670772986436314*^9, 3.670772995844561*^9}}],
-
-Cell[BoxData[
- RowBox[{"Dimensions", "@", "eric"}]], "Input",
- CellChangeTimes->{{3.6707727553680954`*^9, 3.670772758362757*^9}}],
-
-Cell[BoxData[
- RowBox[{"Dynamic", "[", 
-  RowBox[{"camface", "=", 
-   RowBox[{"ColorConvert", "[", 
-    RowBox[{
-     RowBox[{"ImageCrop", "[", 
+ RowBox[{
+  RowBox[{"training", "=", 
+   RowBox[{"labelledFaces", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ";;", "344", ";;", "8"}], "]"}], "]"}]}], ";", 
+  RowBox[{"testing", "=", 
+   RowBox[{"labelledFaces", "[", 
+    RowBox[{"[", 
+     RowBox[{"Complement", "[", 
       RowBox[{
-       RowBox[{"ImageReflect", "[", 
-        RowBox[{
-         RowBox[{"CurrentImage", "[", 
-          RowBox[{"RasterSize", "\[Rule]", 
-           RowBox[{"{", 
-            RowBox[{"640", ",", "480"}], "}"}]}], "]"}], ",", "Left"}], "]"}],
-        ",", 
-       RowBox[{"{", 
-        RowBox[{"256", ",", "360"}], "}"}]}], "]"}], ",", 
-     "\"\<Grayscale\>\""}], "]"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellChangeTimes->{{3.6707727619707127`*^9, 3.6707727762655134`*^9}, {
-  3.6707729580555487`*^9, 3.670773120204849*^9}, {3.6707731827024546`*^9, 
-  3.6707731895824957`*^9}, {3.670775253676133*^9, 3.6707752665684175`*^9}}],
-
-Cell[BoxData[
- RowBox[{"Dynamic", "@", 
-  RowBox[{"recognizeFace", "[", 
-   RowBox[{
-    RowBox[{"ImageData", "@", "camface"}], ",", "All", ",", "1"}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.6707727277173157`*^9, 3.6707727496718187`*^9}, {
-  3.670773201844882*^9, 3.670773212687577*^9}, {3.6707752753007593`*^9, 
-  3.670775276336447*^9}}],
-
-Cell[BoxData[
- RowBox[{"N", "@", 
-  RowBox[{"FOM", "[", 
-   RowBox[{
-    RowBox[{"labelledFaces", "[", 
-     RowBox[{"[", 
-      RowBox[{"1", ";;", "All", ";;", "8"}], "]"}], "]"}], ",", 
-    RowBox[{"labelledFaces", "[", 
-     RowBox[{"[", 
-      RowBox[{"6", ";;", "All", ";;", "8"}], "]"}], "]"}], ",", "2"}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.6707702010371084`*^9, 3.67077022689992*^9}, {
-   3.6707703542773013`*^9, 3.6707703626333013`*^9}, 3.6707708338649387`*^9, {
-   3.670771216551124*^9, 3.670771237822796*^9}, {3.670771268987207*^9, 
-   3.6707712955814447`*^9}, {3.670771997636716*^9, 3.670772003551216*^9}, {
-   3.6707724621604156`*^9, 3.670772469288516*^9}, {3.670772508629116*^9, 
-   3.670772510963516*^9}, {3.6707725461668158`*^9, 3.6707725706597157`*^9}, {
-   3.6707763670412135`*^9, 3.670776400747584*^9}, {3.6707765583063383`*^9, 
-   3.670776589496457*^9}, 3.6707766272812347`*^9, {3.670776772273733*^9, 
-   3.6707768890584097`*^9}}],
+       RowBox[{"Range", "[", "344", "]"}], ",", 
+       RowBox[{"Range", "[", 
+        RowBox[{"344", ",", "8"}], "]"}]}], "]"}], "]"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6708390491141567`*^9, 3.670839072090308*^9}, {
+  3.670839129471631*^9, 3.67083913036814*^9}, {3.670839320554762*^9, 
+  3.670839329354158*^9}, {3.6708394639276333`*^9, 3.6708394781392393`*^9}, {
+  3.670839517686037*^9, 3.670839521345202*^9}, {3.670839563937996*^9, 
+  3.67083957394545*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -305,22 +299,20 @@ Cell[BoxData[{
    RowBox[{"Table", "[", 
     RowBox[{
      RowBox[{"FOM", "[", 
-      RowBox[{
-       RowBox[{"labelledFaces", "[", 
+      RowBox[{"training", ",", 
+       RowBox[{"testing", "[", 
         RowBox[{"[", 
-         RowBox[{"1", ";;", "All", ";;", "8"}], "]"}], "]"}], ",", 
-       RowBox[{"labelledFaces", "[", 
-        RowBox[{"[", 
-         RowBox[{"s", ";;", "All", ";;", "8"}], "]"}], "]"}], ",", "d"}], 
-      "]"}], ",", 
+         RowBox[{"s", ";;", "All", ";;", "7"}], "]"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "43"}], "}"}]}], "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"s", ",", "2", ",", "8"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"d", ",", "1", ",", "43"}], "}"}]}], "]"}]}], 
+      RowBox[{"s", ",", "1", ",", "7"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"Dimensions", "@", "data"}]}], "Input",
  CellChangeTimes->{{3.6707797868589587`*^9, 3.6707798480053587`*^9}, {
-  3.670780560379841*^9, 3.6707805604422407`*^9}}],
+  3.670780560379841*^9, 3.6707805604422407`*^9}, {3.670838702156506*^9, 
+  3.670838708868198*^9}, {3.670839589430483*^9, 3.6708396169945927`*^9}, {
+  3.670839650215129*^9, 3.6708396514594793`*^9}}],
 
 Cell[BoxData[
  RowBox[{"ListLinePlot", "[", 
@@ -341,7 +333,14 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{
      "\"\<Number of Eigenfaces\>\"", ",", "\"\<Recognition accuracy\>\""}], 
-     "}"}]}]}], "]"}]], "Input",
+     "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"\"\<Training on \>\"", "<>", 
+     RowBox[{"ToString", "@", 
+      RowBox[{"Length", "@", "training"}]}], "<>", 
+     "\"\< faces, tested on \>\"", "<>", 
+     RowBox[{"ToString", "@", 
+      RowBox[{"Length", "@", "testing"}]}]}]}]}], "]"}]], "Input",
  CellChangeTimes->{{3.6707787420548162`*^9, 3.6707788598248167`*^9}, {
    3.6707789825504813`*^9, 3.670778983925619*^9}, {3.6707791719259644`*^9, 
    3.6707792351894627`*^9}, {3.6707792893413005`*^9, 
@@ -349,12 +348,7 @@ Cell[BoxData[
    3.6707798068443584`*^9, {3.670779854727759*^9, 3.6707798952276883`*^9}, {
    3.670779930453145*^9, 3.6707799309523478`*^9}, {3.6707802358163977`*^9, 
    3.6707802607383533`*^9}, {3.6707802914993763`*^9, 3.670780366688639*^9}, {
-   3.670780642072217*^9, 3.6707806655812173`*^9}}],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Length", "@", "labelledFaces"}], "/", "8"}]], "Input",
- CellChangeTimes->{{3.670780551611549*^9, 3.6707805551543064`*^9}}],
+   3.670780642072217*^9, 3.6707806655812173`*^9}, 3.670839548057777*^9}],
 
 Cell[BoxData[
  RowBox[{"makeGrid", "[", 
@@ -367,69 +361,104 @@ Cell[BoxData[
      RowBox[{"7", ";;", "All", ";;", "8"}], "]"}], "]"}], ",", "All"}], 
   "]"}]], "Input",
  CellChangeTimes->{{3.670776503697878*^9, 3.670776525216029*^9}, 
-   3.670776636389146*^9}],
+   3.670776636389146*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Train on 301, test on 43 (sampled)", "Chapter",
+ CellChangeTimes->{{3.670589377324398*^9, 3.670589395756258*^9}, {
+  3.670838916357644*^9, 3.670838920074368*^9}}],
 
 Cell[BoxData[
+ RowBox[{"Length", "@", "images"}]], "Input",
+ CellChangeTimes->{{3.670838959639532*^9, 3.670838963751527*^9}}],
+
+Cell[BoxData[{
  RowBox[{
-  RowBox[{"f", "[", "x_", "]"}], ":=", 
-  RowBox[{"x", "+", "5"}]}]], "Input",
- CellChangeTimes->{{3.670780932144391*^9, 3.670780936946433*^9}}],
-
-Cell[BoxData[
- RowBox[{"f", "[", "7", "]"}]], "Input",
- CellChangeTimes->{{3.67078093858467*^9, 3.6707809688791957`*^9}}],
-
-Cell[BoxData[
+  RowBox[{"training2", "=", 
+   RowBox[{"labelledFaces", "[", 
+    RowBox[{"[", 
+     RowBox[{"Complement", "[", 
+      RowBox[{
+       RowBox[{"Range", "[", "344", "]"}], ",", 
+       RowBox[{"Range", "[", 
+        RowBox[{"344", ",", "8"}], "]"}]}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"f", "[", "6", "]"}], "=", "\"\<hello\>\""}]], "Input",
- CellChangeTimes->{{3.6707809425555124`*^9, 3.670780949148179*^9}}]
+  RowBox[{"testing2", "=", 
+   RowBox[{"labelledFaces", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ";;", "344", ";;", "8"}], "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6708390491141567`*^9, 3.670839072090308*^9}, {
+  3.670839129471631*^9, 3.67083913036814*^9}, {3.670839320554762*^9, 
+  3.670839329354158*^9}, {3.6708394639276333`*^9, 3.6708394781392393`*^9}, {
+  3.670839517686037*^9, 3.670839521345202*^9}, {3.670839689914295*^9, 
+  3.670839691909748*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data2", "=", 
+   RowBox[{"FOM", "[", 
+    RowBox[{"training2", ",", "testing2", ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "43"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "@", "data2"}]}], "Input",
+ CellChangeTimes->{{3.6707797868589587`*^9, 3.6707798480053587`*^9}, {
+  3.670780560379841*^9, 3.6707805604422407`*^9}, {3.670838702156506*^9, 
+  3.670838708868198*^9}, {3.670838931462111*^9, 3.6708389907784023`*^9}, {
+  3.670839059853138*^9, 3.670839074132462*^9}, {3.670839107274238*^9, 
+  3.670839137735215*^9}, {3.6708393466023417`*^9, 3.670839346665501*^9}, {
+  3.670839499893498*^9, 3.670839523438138*^9}, {3.670839626705709*^9, 
+  3.670839628170969*^9}, {3.670839693182045*^9, 3.6708396952395*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"data2", ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "All"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Number of Eigenfaces\>\"", ",", "\"\<Recognition accuracy\>\""}], 
+     "}"}]}], ",", 
+   RowBox[{"PlotLabel", "\[Rule]", 
+    RowBox[{"\"\<Training on \>\"", "<>", 
+     RowBox[{"ToString", "@", 
+      RowBox[{"Length", "@", "training2"}]}], "<>", 
+     "\"\< faces, tested on \>\"", "<>", 
+     RowBox[{"ToString", "@", 
+      RowBox[{"Length", "@", "testing2"}]}]}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6707787420548162`*^9, 3.6707788598248167`*^9}, {
+   3.6707789825504813`*^9, 3.670778983925619*^9}, {3.6707791719259644`*^9, 
+   3.6707792351894627`*^9}, {3.6707792893413005`*^9, 
+   3.6707792894504986`*^9}, {3.670779371740468*^9, 3.670779433207085*^9}, 
+   3.6707798068443584`*^9, {3.670779854727759*^9, 3.6707798952276883`*^9}, {
+   3.670779930453145*^9, 3.6707799309523478`*^9}, {3.6707802358163977`*^9, 
+   3.6707802607383533`*^9}, {3.6707802914993763`*^9, 3.670780366688639*^9}, {
+   3.670780642072217*^9, 3.6707806655812173`*^9}, {3.670839001669969*^9, 
+   3.670839015524508*^9}, {3.670839297759893*^9, 3.670839300339219*^9}, {
+   3.670839369273238*^9, 3.670839443220316*^9}, 3.6708396302229357`*^9, {
+   3.670839729509203*^9, 3.670839731303315*^9}}],
+
+Cell[BoxData[
+ RowBox[{"makeGrid", "[", 
+  RowBox[{"training", ",", "testing", ",", "All"}], "]"}]], "Input",
+ CellChangeTimes->{{3.670776503697878*^9, 3.670776525216029*^9}, 
+   3.670776636389146*^9, {3.670839229673558*^9, 3.670839234060244*^9}}]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1920, 1022},
-WindowMargins->{{-9, Automatic}, {Automatic, -9}},
+WindowSize->{1261, 1013},
+WindowMargins->{{Automatic, 192}, {Automatic, -8}},
 Magnification:>1.5 Inherited,
-FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (February 25, 2016)",
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
 ]
-(* End of Notebook Content *)
-
-(* Internal cache information *)
-(*CellTagsOutline
-CellTagsIndex->{}
-*)
-(*CellTagsIndex
-CellTagsIndex->{}
-*)
-(*NotebookFileOutline
-Notebook[{
-Cell[558, 20, 308, 7, 75, "Input",
- InitializationCell->True],
-Cell[869, 29, 2532, 65, 249, "Input"],
-Cell[3404, 96, 4349, 106, 357, "Input",
- InitializationCell->True],
-Cell[7756, 204, 182, 4, 45, "Input"],
-Cell[CellGroupData[{
-Cell[7963, 212, 107, 1, 150, "Title"],
-Cell[8073, 215, 642, 18, 45, "Input",
- InitializationCell->True],
-Cell[CellGroupData[{
-Cell[8740, 237, 119, 1, 108, "Chapter"],
-Cell[8862, 240, 168, 3, 45, "Input"],
-Cell[9033, 245, 129, 2, 67, "Input"],
-Cell[9165, 249, 793, 19, 112, "Input"],
-Cell[9961, 270, 344, 8, 67, "Input"],
-Cell[10308, 280, 960, 19, 67, "Input"],
-Cell[11271, 301, 766, 21, 112, "Input"],
-Cell[12040, 324, 1208, 27, 112, "Input"],
-Cell[13251, 353, 157, 3, 67, "Input"],
-Cell[13411, 358, 403, 11, 67, "Input"],
-Cell[13817, 371, 168, 4, 67, "Input"],
-Cell[13988, 377, 121, 2, 67, "Input"],
-Cell[14112, 381, 157, 3, 67, "Input"]
-}, Open  ]]
-}, Open  ]]
-}
-]
-*)
-

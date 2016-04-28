@@ -84,6 +84,9 @@ recognizeFace[face_,depth_,n_]:=Module[{i},
 i=Nearest[trainingFaces->Automatic,eigenCompress[Flatten@face,eigenfaces,depth],n];
 Return[{i,Map[Image,neutralFaces[[i]]]}]
 ];
+recognizeFace[face_,n_]:=Module[{},
+recognizeFace[face,depth,n][[2]]
+]
 
 
 
