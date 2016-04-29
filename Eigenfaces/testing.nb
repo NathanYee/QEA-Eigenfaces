@@ -121,6 +121,7 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{"numEFmin", ",", "numEFmax"}], "}"}]}], "]"}]}], 
    "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
  CellChangeTimes->{{3.6708400691364527`*^9, 3.670840144158123*^9}, {
   3.67084026937138*^9, 3.67084029475629*^9}}],
 
@@ -385,10 +386,6 @@ Cell["Train on 301, test on 43 (sampled)", "Chapter",
  CellChangeTimes->{{3.670589377324398*^9, 3.670589395756258*^9}, {
   3.670838916357644*^9, 3.670838920074368*^9}}],
 
-Cell[BoxData[
- RowBox[{"Length", "@", "images"}]], "Input",
- CellChangeTimes->{{3.670838959639532*^9, 3.670838963751527*^9}}],
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"training2", "=", 
@@ -419,7 +416,7 @@ Cell[BoxData[{
    RowBox[{"FOM", "[", 
     RowBox[{"training", ",", "training2", ",", "testing2", ",", 
      RowBox[{"{", 
-      RowBox[{"1", ",", "301"}], "}"}]}], "]"}]}], 
+      RowBox[{"1", ",", "43"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"Dimensions", "@", "data2"}]}], "Input",
  CellChangeTimes->{{3.6707797868589587`*^9, 3.6707798480053587`*^9}, {
@@ -430,7 +427,8 @@ Cell[BoxData[{
   3.670839499893498*^9, 3.670839523438138*^9}, {3.670839626705709*^9, 
   3.670839628170969*^9}, {3.670839693182045*^9, 3.6708396952395*^9}, {
   3.670840312295383*^9, 3.670840313652246*^9}, {3.670840602213441*^9, 
-  3.6708406037811937`*^9}, {3.6709401891739197`*^9, 3.67094018939608*^9}}],
+  3.6708406037811937`*^9}, {3.6709401891739197`*^9, 3.67094018939608*^9}, {
+  3.670943299022463*^9, 3.6709432990715103`*^9}}],
 
 Cell[BoxData[{
  RowBox[{"ListLinePlot", "[", 
@@ -471,13 +469,6 @@ Cell[BoxData[{
    3.670839369273238*^9, 3.670839443220316*^9}, 3.6708396302229357`*^9, {
    3.670839729509203*^9, 3.670839731303315*^9}, {3.67093399316385*^9, 
    3.670933998241097*^9}}],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Export", "[", 
-   RowBox[{"\"\<manytrain.png\>\"", ",", 
-    RowBox[{"Out", "[", "153", "]"}]}], "]"}], ";"}]], "Input",
- CellChangeTimes->{{3.670934018666525*^9, 3.670934020948194*^9}}],
 
 Cell[BoxData[
  RowBox[{"makeGrid", "[", 
@@ -719,8 +710,9 @@ Cell[BoxData[{
 }, Open  ]]
 },
 WindowSize->{1261, 1013},
-WindowMargins->{{Automatic, 222}, {Automatic, -8}},
+WindowMargins->{{Automatic, 212}, {Automatic, -8}},
 Magnification:>1.5 Inherited,
 FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
 ]
+
