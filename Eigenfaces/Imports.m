@@ -24,7 +24,7 @@ nathan = images[[234]];
 emotions={"Neutral","Happy","Winking","Angry","Sad","Concerned","Disgusted","Surprised"};
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Names*)
 
 
@@ -39,7 +39,7 @@ Dhash
 Diego
 Emily 
 Eric
-Gwen
+Gwyn
 Harper
 Isaac 
 Izzy 
